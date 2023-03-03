@@ -64,13 +64,21 @@
                       </a>
                     </li>
                     <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=seller" class="nav-link nav-seller">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                          Seller List
+                        </p>
+                      </a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=sales" class="nav-link nav-sales">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                           Sales Report
                         </p>
                       </a>
-                    </li>
+                    </li> -->
                     <li class="nav-header">Maintenance</li>
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=maintenance/category" class="nav-link nav-maintenance/category">

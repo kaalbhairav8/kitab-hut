@@ -1,6 +1,7 @@
 
 <section class="py-5">
     <div class="container">
+    <?php require_once('back.php'); ?>
         <div class="row">
             <div class="col d-flex justify-content-end mb-2">
                 <button class="btn btn-outline-dark btn-flat btn-sm" type="button" id="empty_cart">Empty Cart</button>
@@ -58,8 +59,8 @@
             </div>
         </div>
         <div class="d-flex w-100 justify-content-end">
-            <a href="./?p=buy_checkout" class="btn btn-sm btn-flat btn-dark">Buy</a>
-            <a href="./?p=rent_checkout" class="btn btn-sm btn-flat btn-bright">Rent for 15 days</a>
+            <a href="./?p=buy_checkout" class="btn btn-sm btn-flat btn-dark">Buy Now</a>
+            <a href="./?p=rent_checkout" class="btn btn-sm btn-flat btn-secondary">Rent for 15 days</a>
         </div>
     </div>
 </section>

@@ -394,6 +394,22 @@ Class Master extends DBConnection {
 		}
 		return json_encode($resp);
 	}
+	function delete_request(){
+		extract($_POST);
+		$delete = $this->conn->query("DELETE FROM selling_form where id = '{$id}'");
+		// $delete2 = $this->conn->query("DELETE FROM order_list where order_id = '{$id}'");
+		// $delete3 = $this->conn->query("DELETE FROM sales where order_id = '{$id}'");
+		if($this->capture_err())
+			return $this->capture_err();
+		if($delete){
+			$resp['status'] = 'success';
+			$this->settings->set_flashdata('success',"Request successfully deleted");
+		}else{
+			$resp['status'] = 'failed';
+			$resp['err'] = $this->conn->error."[{$sql}]";
+		}
+		return json_encode($resp);
+	}
 	function place_order(){
 		extract($_POST);
 		$client_id = $this->settings->userdata('id');
@@ -608,7 +624,9 @@ switch ($action) {
 	case 'delete_product':
 		echo $Master->delete_product();
 	break;
-	
+	case 'delete_request':
+		echo $Master->delete_request();
+	break;
 	case 'save_inventory':
 		echo $Master->save_inventory();
 	break;

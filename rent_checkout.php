@@ -8,6 +8,7 @@ $total = 0;
 ?>
 <section class="py-5">
     <div class="container">
+    <?php require_once('back.php'); ?>
         <div class="card rounded-0">
             <div class="card-body"></div>
             <h3 class="text-center"><b>Checkout</b></h3>
@@ -22,15 +23,15 @@ $total = 0;
                     <label for="" class="control-label">Order Type</label>
                     </div>
                     <div class="form-group d-flex pl-2">
-                        <div class="custom-control custom-radio">
+                        <!-- <div class="custom-control custom-radio">
                           <input class="custom-control-input custom-control-input-primary" type="radio" id="customRadio4" name="order_type" value="2" checked="">
                           <label for="customRadio4" class="custom-control-label">For Delivery</label>
-                        </div>
+                        </div> -->
                         <div class="custom-control custom-radio ml-3">
                           <input class="custom-control-input custom-control-input-primary custom-control-input-outline" type="radio" id="customRadio5" name="order_type" value="1">
-                          <label for="customRadio5" class="custom-control-label">For Pick up</label>
+                          <label for="customRadio5" class="custom-control-label">For Delivery</label>
                         </div>
-                        <p>place order</p>
+
                       </div>
                         <div class="form-group col address-holder">
                             <label for="" class="control-label">Delivery Address</label>
@@ -119,12 +120,11 @@ $(function(){
             dataType:"json",
             error:err=>{
                 console.log(err)
-                alert_toast("sorry! an error occured","error")
-                // location.replace('./')
-                setTimeout(function(){
+                alert_toast("Order Successfully placed.","success")
+                //  location.replace('./')
+                 setTimeout(function(){
                         location.replace('./')
                     },2000)
-                end_loader();
             },
             success:function(resp){
                 if(!!resp.status && resp.status == 'success'){

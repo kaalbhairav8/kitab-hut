@@ -41,6 +41,7 @@
                         <li class="nav-item"><a class="nav-link" href="./?p=view_categories">All Categories</a></li>
                         <?php endif; ?>
                         <li class="nav-item"><a class="nav-link" href="./?p=about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./?p=seller">Seller</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
                       <?php if(!isset($_SESSION['userdata']['id'])): ?>

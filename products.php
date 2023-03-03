@@ -84,7 +84,7 @@ elseif(isset($_GET['s'])){
                         <?php 
                             $whereData = "";
                             if(isset($_GET['search']))
-                                $whereData = " and (title LIKE '%{$_GET['search']}%' or author LIKE '%{$_GET['search']}%' or description LIKE '%{$_GET['search']}%')";
+                                $whereData = " and (title LIKE '%{$_GET['search']}%' or author LIKE '%{$_GET['search']}%')";
                             elseif(isset($_GET['c']) && isset($_GET['s']))
                                 $whereData = " and (md5(category_id) = '{$_GET['c']}' and md5(sub_category_id) = '{$_GET['s']}')";
                             elseif(isset($_GET['c']) && !isset($_GET['s']))

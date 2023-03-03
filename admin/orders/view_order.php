@@ -1,7 +1,11 @@
 <?php if(isset($_GET['view'])): 
 require_once('../../config.php');
 endif;?>
-
+<?php if($_settings->chk_flashdata('success')): ?>
+<script>
+	alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
+</script>
+<?php endif;?>
 <?php 
 if(!isset($_GET['id'])){
     $_settings->set_flashdata('error','No order ID Provided.');
@@ -69,16 +73,41 @@ if($order->num_rows > 0){
         </div>
         <div class="row">
             <div class="col-6">
-                <!-- <p>Payment Method: <?php echo $payment_method ?></p> -->
+                <p>Payment Method: <?php echo $payment_method ?></p>
                 <p>Payment Status: <?php echo $paid == 0 ? '<span class="badge badge-light text-dark">Unpaid</span>' : '<span class="badge badge-success">Paid</span>' ?></p>
                 <p>Order Type: <?php echo $order_type == 1 ? '<span class="badge badge-light text-dark">For Delivery</span>' : '<span class="badge badge-light text-dark">Pick-up</span>' ?></p>
             </div>
             <div class="col-6 row row-cols-2">
+                <div class="col-3">Order Status:</div>
+                <div class="col-9">
+                <?php 
+                    switch($status){
+                        case '0':
+                            echo '<span class="badge badge-light text-dark">Pending</span>';
+	                    break;
+                        case '1':
+                            echo '<span class="badge badge-primary">Packed</span>';
+	                    break;
+                        case '2':
+                            echo '<span class="badge badge-warning">Out for Delivery</span>';
+	                    break;
+                        case '3':
+                            echo '<span class="badge badge-success">Delivered</span>';
+	                    break;
+                        case '5':
+                            echo '<span class="badge badge-success">Picked Up</span>';
+	                    break;
+                        default:
+                            echo '<span class="badge badge-danger">Cancelled</span>';
+	                    break;
+                    }
+                ?>
+                </div>
                 <?php if(!isset($_GET['view'])): ?>
                 <div class="col-3"></div>
-                <!-- <div class="col">
+                <div class="col">
                     <button type="button" id="update_status" class="btn btn-sm btn-flat btn-primary">Update Status</button>
-                </div> -->
+                </div>
                 <?php endif; ?>
                 
             </div>
@@ -86,9 +115,9 @@ if($order->num_rows > 0){
     </div>
 </div>
 <?php if(isset($_GET['view'])): ?>
-<!-- <div class="modal-footer">
+<div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-</div> -->
+</div>
 <style>
     #uni_modal>.modal-dialog>.modal-content>.modal-footer{
         display:none;
@@ -98,10 +127,10 @@ if($order->num_rows > 0){
     }
 </style>
 <?php endif; ?>
-<!-- <script>
+<script>
     $(function(){
         $('#update_status').click(function(){
             uni_modal("Update Status", "./orders/update_status.php?oid=<?php echo $id ?>&status=<?php echo $status ?>")
         })
     })
-</script> -->
+</script>
